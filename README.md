@@ -2,6 +2,8 @@
 
 在Github上看到了[wesbos](https://twitter.com/wesbos)的一个Javascript30天挑战的[repo](https://github.com/wesbos/JavaScript30)，旨在使用纯JS来进行练习，不允许使用任何其他的库和框架，该挑战共30天，我会在这里复现这30天遇到的挑战与问题，将其教程化、视频化分享给大家。
 
+![](https://camo.githubusercontent.com/13a16597bc17b350b043e30ab701082fc276d3c4/68747470733a2f2f6a61766173637269707433302e636f6d2f696d616765732f4a53332d736f6369616c2d73686172652e706e67)
+
 
 ## day01-day03
 
