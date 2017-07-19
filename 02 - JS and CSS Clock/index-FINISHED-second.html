@@ -17,10 +17,9 @@
     </div>
   </div>
 
-
   <style>
     html {
-      background: #018DED url(http://unsplash.it/1500/1000?image=881&blur=50);
+      background: #018DED url(http://unsplash.it/1500/1000?image=881&blur=50); 
       background-size: cover;
       font-family: 'helvetica neue';
       text-align: center;
@@ -44,10 +43,11 @@
       margin: 50px auto;
       position: relative;
       padding: 2rem;
-      box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.1),
-      inset 0 0 0 3px #EFEFEF,
-      inset 0 0 10px black,
-      0 0 10px rgba(0, 0, 0, 0.2);
+      background: rgba(0, 0, 0, .4);
+      box-shadow: 0 0 2px 4px rgba(0, 0, 0, 0.1),
+      inset 0 0 1px 2px #EFEFEF,
+      inset 0 0 30px black,
+      0 0 10px 3px rgba(0, 0, 0, 0.2);
     }
 
     .clock-face {
@@ -60,19 +60,63 @@
 
     .hand {
       width: 50%;
-      height: 6px;
-      background: black;
+      background: #fff;
       position: absolute;
       top: 50%;
-      transform-origin: 100%;
+      right: 50%;
+      box-shadow: 0 0 0 .1px #fff,
+      0 0 0 1px rgba(0, 0, 0, 0.1),
+      0 0 8px rgba(0, 0, 0, 0.4),
+      2px 5px 1px rgba(0, 0, 0, .5);
+      transform-origin: 100% 50%;
       transform: rotate(90deg);
-      transition: all 0.05s;
-      transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+
+      transition-timing-function: cubic-bezier(0.9, 0.54, 0.26, 1.68);
+    }
+
+    .clock-face:after {
+      width: 1em;
+      height: 1em;
+      left: 50%;
+      top: 50%;
+      position: absolute;
+      display: block;
+      content: '';
+      background-color: #a8c5d1;
+      border-radius: 50%;
+      box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1),
+      0 0 10px rgba(0, 0, 0, 0.2);
+      transform: translate(-50%, -50%);
+      /*transition: all .05s;*/
+    }
+
+    .hour-hand {
+      width: 40%;
+      height: 10px;
+      margin-top: -5px;
+      border-bottom-left-radius: .5em;
+      border-top-left-radius: .5em;
+      transition: all 3s;
+    }
+
+    .min-hand {
+      width: 45%;
+      height: 5px;
+      margin-top: -2.5px;
+      transition: all .1s;
+    }
+
+    .second-hand {
+      height: 2px;
+      margin-top: -1px;
+      border-bottom-left-radius: 100%;
+      border-top-left-radius: 100%;
+      transition: all .05s;
+      background-color: red;
     }
   </style>
 
   <script>
-
     const secondHand = document.querySelector('.second-hand');
     const minsHand = document.querySelector('.min-hand');
     const hourHand = document.querySelector('.hour-hand');
@@ -96,9 +140,9 @@
       minDeg += ((1 / 60) / 60) * 360;
       hourDeg += (((1 / 60) / 60) / 12);
 
-      secHand.style.transform = `rotate(${ s }deg)`;
-      minHand.style.transform = `rotate(${ m }deg)`;
-      hourHand.style.transform = `rotate(${ h }deg)`;
+      secondHand.style.transform = `rotate(${ secondDeg }deg)`;
+      minsHand.style.transform = `rotate(${ minDeg }deg)`;
+      hourHand.style.transform = `rotate(${ hourDeg }deg)`;
     }
 
     initDate();

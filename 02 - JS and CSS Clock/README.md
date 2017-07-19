@@ -246,7 +246,6 @@ setInterval(setDate, 1000);
 
 ```js
   <script>
-
     const secondHand = document.querySelector('.second-hand');
     const minsHand = document.querySelector('.min-hand');
     const hourHand = document.querySelector('.hour-hand');
@@ -270,9 +269,9 @@ setInterval(setDate, 1000);
       minDeg += ((1 / 60) / 60) * 360;
       hourDeg += (((1 / 60) / 60) / 12);
 
-      secHand.style.transform = `rotate(${ s }deg)`;
-      minHand.style.transform = `rotate(${ m }deg)`;
-      hourHand.style.transform = `rotate(${ h }deg)`;
+      secondHand.style.transform = `rotate(${ secondDeg }deg)`;
+      minsHand.style.transform = `rotate(${ minDeg }deg)`;
+      hourHand.style.transform = `rotate(${ hourDeg }deg)`;
     }
 
     initDate();
@@ -290,4 +289,7 @@ setInterval(setDate, 1000);
 |扫码申请加入全栈部落|
 |:---------------:|
 |![](http://upload-images.jianshu.io/upload_images/75699-a5d38be84e4eac70.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)|
+
+
+
 
