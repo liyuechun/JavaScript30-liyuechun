@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Scoped CSS Variables and JS</title>
+</head>
+
+<body>
+  <h2>Update CSS Variables with <span class='hl'>JS</span></h2>
+
+  <div class="controls">
+    <label for="spacing">Spacing:</label>
+    <input id="spacing" type="range" name="spacing" min="10" max="200" value="10" data-sizing="px">
+
+    <label for="blur">Blur:</label>
+    <input id="blur" type="range" name="blur" min="0" max="25" value="10" data-sizing="px">
+
+    <label for="base">Base Color</label>
+    <input id="base" type="color" name="base" value="#ffc600">
+  </div>
+
+
+  <div class="result">
+    <div class="showText">{spacing:<label id="label_spacing">#ffc600</label>}</div>
+    <div class="showText">{blur:<label id="label_blur">10px</label>}</div>
+    <div class="showText">{base:<label id="label_base">10px</label>}</div>
+  </div>
+
+
+  <img src="http://f.hiphotos.baidu.com/lvpics/h=800/sign=b346032cbe389b5027ffed52b534e5f1/960a304e251f95ca545f8b84ce177f3e6709525d.jpg">
+
+  <style>
+     :root {
+      --base: #ffc600;
+      --spacing: 10px;
+      --blur: 10px;
+    }
+
+    img {
+
+      width: 600px;
+      height: 400px;
+      padding: var(--spacing);
+      background: var(--base);
+      filter: blur(var(--blur));
+    }
+
+    .hl {
+      color: var(--base);
+    }
+    /*
+      misc styles, nothing to do with CSS variables
+    */
+
+    body {
+      text-align: center;
+      background: #193549;
+      color: white;
+      font-family: 'helvetica neue', sans-serif;
+      font-weight: 100;
+      font-size: 30px;
+    }
+
+    .controls {
+      margin-bottom: 50px;
+    }
+
+    input {
+      width: 100px;
+    }
+
+    .result {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      color: var(--base);
+    }
+
+    .showText {
+      margin: 0px 25px 50px 25px;
+    }
+  </style>
+
+  <script>
+    const inputs = document.querySelectorAll('.controls input');
+
+    function handleUpdate() {
+      const suffix = this.dataset.sizing || '';
+      document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
+      document.getElementById(`label_${this.name}`).innerText = this.value + suffix;
+    }
+
+    inputs.forEach(input => input.addEventListener('change', handleUpdate));
+    inputs.forEach(input => input.addEventListener('mousemove', handleUpdate));
+  </script>
+
+
+</body>
+
+</html>
