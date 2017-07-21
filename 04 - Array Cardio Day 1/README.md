@@ -307,7 +307,16 @@ console.log(transportation);
 [Github Source Code](https://github.com/liyuechun/JavaScript30-liyuechun)
 
 
-|扫码申请加入全栈部落|
-|:---------------:|
-|![](http://upload-images.jianshu.io/upload_images/75699-a5d38be84e4eac70.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)|
+>社群品牌：[从零到壹全栈部落](http://www.kongyixueyuan.com)
+>定位：寻找共好，共同学习，持续输出全栈技术社群
+>业界荣誉：IT界的逻辑思维
+>文化：输出是最好的学习方式
+>官方公众号：全栈部落
+>社群发起人：[春哥(从零到壹创始人，交流微信：liyc1215)](http://weibo.com/mobiledevelopment)
+>技术交流社区：[全栈部落BBS](http://bbs.kongyixueyuan.com)
+>全栈部落完整系列教程：[全栈部落完整电子书学习笔记](http://fullstack.kongyixueyuan.com)
+
+|关注全栈部落官方公众号，每晚十点接收系列原创技术推送|
+|:---------:|
+|![](http://orhm8wuhd.bkt.clouddn.com/quanzhanbuluo.png)|
 
