@@ -152,7 +152,10 @@ CSS 在这个过程中占了重点，运用 `flex` 可以使各个元素按一�
 
 - [CSS参考手册](http://www.css88.com/book/css/properties/flex/flex.htm)
 
+- [选择器（Selectors）](https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Getting_started/Selectors)
+
 - [CSS选择器笔记](http://www.ruanyifeng.com/blog/2009/03/css_selectors.html)
+
 
 - [flex布局完全入门教程](http://bbs.kongyixueyuan.com/topic/10/flex布局完全入门教程)
 
