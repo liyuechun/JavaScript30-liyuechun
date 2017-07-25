@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>HTML5 Canvas 实现彩虹画笔绘画板</title>
+  <script type="text/javascript">
+    function draw() {
+      var canvas = document.getElementById('tutorial');
+      if (canvas.getContext) {
+        var ctx = canvas.getContext('2d');
+        ctx.fillStyle = "rgb(200,0,0)";
+        ctx.fillRect (10, 10, 55, 50);
+
+        ctx.fillStyle = "rgba(0, 0, 200, 0.5)";
+        ctx.fillRect (30, 30, 55, 50);
+      }
+    }
+  </script>
+  <style type="text/css">
+    canvas {
+      border: 1px solid black;
+    }
+  </style>
+</head>
+
+<body onload="draw();">
+  <canvas id="tutorial" width="300" height="300"></canvas>
+</body>
+
+</html>
