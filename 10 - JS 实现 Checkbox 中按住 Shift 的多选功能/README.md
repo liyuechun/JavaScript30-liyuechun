@@ -45,7 +45,7 @@ function handleCheck0(e) {
 	startChecked = this;
 }
 ```
-
+ 
 
 ### 方法二
 
@@ -108,39 +108,39 @@ function handleCheck1(e) {
 
 1. 转换 Nodelist 为数组  
 
-	````js
+	```js
 	const boxs = document.querySelectorAll('.inbox input[type="checkbox"]');
 	const boxArr = Array.from(boxs);
 	````
-
+	
 2. 针对按下了 Shift 键的情况，获取 A-B 范围  
 
-	````js
+	```js
 	let start = boxArr.indexOf(this);
 	let end = boxArr.indexOf(startChecked);
-	````
-
+	```
+	
 3. 截取该范围内的数组元素，并改变选中状态  
 
 	```js
 	boxArr.slice(Math.min(start, end), Math.max(start, end) + 1)
 					   .forEach(input => input.checked = onOff);
 	```
-
+	
 4. 确定选中 or 取消选中    
 
-	````js
+	```js
 	onOff = startChecked.checked ? true : false;
-	````
-
+	```
+	
 5. 标记 A 值    
-
-	````js
+ 
+	```js
 	if(!startChecked) startChecked = this;
 	/* ... */
 	startChecked = this;
-	````
-
+	```
+	
 ## 源码下载
 
 [Github Source Code](https://github.com/liyuechun/JavaScript30-liyuechun)
@@ -164,3 +164,9 @@ function handleCheck1(e) {
 |关注全栈部落官方公众号，每晚十点接收系列原创技术推送|
 |:---------:|
 |![](http://orhm8wuhd.bkt.clouddn.com/quanzhanbuluo.png)|
+
+
+
+
+
+
