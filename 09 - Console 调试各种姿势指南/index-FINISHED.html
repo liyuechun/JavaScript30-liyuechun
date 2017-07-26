@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Console Tricks!</title>
+</head>
+
+<body>
+
+  <p style="color:red;font-size:40px" onClick="makeGreen()">全栈部落的小伙伴，请点击我！</p>
+
+  <script>
+    const dogs = [{
+      name: 'Snickers',
+      age: 2
+    }, {
+      name: 'hugo',
+      age: 8
+    }];
+
+    function makeGreen() {
+      const p = document.querySelector('p');
+      p.style.color = '#BADA55';
+      p.style.fontSize = '50px';
+      p.innerText = "打开控制台，查看调试效果。";
+    }
+
+    // Regular
+    console.log('hello');
+
+    // Interpolated
+    console.log("I am a String: %s ", "log"); //log
+    console.log("I am a int number: %d ", 1); //1
+    console.log("I am a float number: %d ", 1.23); //1.23
+    let dog = {
+      name: "Lucky",
+      age: "5"
+    };
+    console.log("%o", dog);
+    console.log("%c3D Text",
+      " text-shadow: 0 1px 0 #ccc,0 2px 0 #c9c9c9,0 3px 0 #bbb,0 4px 0 #b9b9b9,0 5px 0 #aaa,0 6px 1px rgba(0,0,0,.1),0 0 5px rgba(0,0,0,.1),0 1px 3px rgba(0,0,0,.3),0 3px 5px rgba(0,0,0,.2),0 5px 10px rgba(0,0,0,.25),0 10px 10px rgba(0,0,0,.2),0 20px 20px rgba(0,0,0,.15);font-size:5em"
+    );
+
+
+    // warning!
+    console.warn('OH NOOO');
+
+    // Error :|
+    console.error('Shit!');
+
+    // Info
+    console.info('Crocodiles eat 3-4 people per year');
+
+    //debug
+    console.debug("用于输出调试信息");
+
+    // Testing
+    const p = document.querySelector('p');
+
+    console.assert(p.classList.contains('ouch'), 'That is wrong!');
+
+    // clearing
+    console.clear();
+
+    // Viewing DOM Elements
+    console.log(p);
+    console.dir(p);
+
+    console.clear();
+
+    console.table(dogs);
+    console.table(dogs, ["age"]);
+
+    // Grouping together
+    dogs.forEach(dog => {
+      console.groupCollapsed(`${dog.name}`);
+      console.log(`This is ${dog.name}`);
+      console.log(`${dog.name} is ${dog.age} years old`);
+      console.log(`${dog.name} is ${dog.age * 7} dog years old`);
+      console.groupEnd(`${dog.name}`);
+    });
+
+    // counting
+
+    console.count('liyuechun');
+    console.count('chunge');
+    console.count('黎跃春');
+    console.count('黎跃春');
+    console.count('黎跃春');
+    console.count('黎跃春');
+    console.count('黎跃春');
+    console.count('全栈部落');
+    console.count('黎跃春');
+    console.count('黎跃春');
+    console.count('黎跃春');
+    console.count('全栈部落');
+
+    // timing
+    console.time('fetch my data');
+    fetch("https://gist.githubusercontent.com/liyuechun/f00bb31fb8f46ee0a283a4d182f691b4/raw/3ea4b427917048cdc596b38b67b5ed664605b76d/TangPoetry.json")
+      .then(data => data.json())
+      .then(data => {
+        console.timeEnd('fetch my data');
+        console.log(data);
+      });
+  </script>
+</body>
+
+</html>
