@@ -3,7 +3,7 @@
 > 作者：©[liyuechun](https://github.com/liyuechun)  
 > 简介：[JavaScript30](https://javascript30.com) 是 [Wes Bos](https://github.com/wesbos) 推出的一个 30 天挑战。项目免费提供了 30 个视频教程、30 个挑战的起始文档和 30 个挑战解决方案源代码。目的是帮助人们用纯 JavaScript 来写东西，不借助框架和库，也不使用编译器和引用。现在你看到的是这系列指南的第 7 篇。完整中文版指南及视频教程在 [从零到壹全栈部落](http://kongyixueyuan.com/course/4188)。
 
-第七天的练习是接着之前[Day07 - Array Cardio 中文指南一](http://bbs.kongyixueyuan.com/topic/40/day04-array-cardio-%E6%8C%87%E5%8D%97%E4%B8%80)的练习，继续熟练数组的方法，依旧没有页面显示效果，所以请打开浏览器的Console面板进行调试运行。
+第七天的练习是接着之前[Day04 - Array Cardio 中文指南一](http://bbs.kongyixueyuan.com/topic/40/day04-array-cardio-%E6%8C%87%E5%8D%97%E4%B8%80)的练习，继续熟练数组的方法，依旧没有页面显示效果，所以请打开浏览器的Console面板进行调试运行。
 
 ![](http://om1c35wrq.bkt.clouddn.com/dya7%20-%20000.png)
 ![](http://om1c35wrq.bkt.clouddn.com/day7%20-%20001.png)
@@ -48,7 +48,7 @@ const comments = [
 - CASE
 
 ```js
-let isBiggerThan10 = (element, index, array) {
+let isBiggerThan10 = (element, index, array) => {
   return element > 10;
 }
 
@@ -117,7 +117,7 @@ console.log(isAdult);
 - CASE
 
 ```js
-let isBigEnough => (element, index, array) { 
+let isBigEnough = (element, index, array) => { 
   return element >= 10; 
 } 
 
@@ -161,7 +161,7 @@ console.log({everyAdult});
 - CASE
 
 ```js
-let = isBigEnough => (element) {
+let  isBigEnough = (element) => {
   return element >= 15;
 }
 
@@ -205,7 +205,7 @@ console.log(findComment);
 - CASE
 
 ```js
-let isBigEnough => (element) {
+let isBigEnough = (element) => {
   return element >= 15;
 }
 
@@ -249,7 +249,7 @@ console.log(findCommentIndex);
 
 - CASE
 
-在索引2的位置移动0个元素，并且插入"drum"
+在索引2的位置移除0个元素，并且插入"drum"
 
 ```js
 var myFish = ['angel', 'clown', 'mandarin', 'sturgeon'];
@@ -335,9 +335,9 @@ arr.slice()
 arr.slice(begin)
 arr.slice(begin, end)
 ```
-**arr.slice()**等价于**arr.slice(0,arr.length - 1)**
+**arr.slice()**等价于**arr.slice(0,arr.length)**
 
-**arr.slice(begin)**等价于**arr.slice(begin,arr.length - 1)**
+**arr.slice(begin)**等价于**arr.slice(begin,arr.length)**
 
 `arr.slice(begin, end)`：创建一个新数组，将索引`begin`-`end`(不包含end)的元素放到新数组中并返回新数组，原数组不被修改。
 
@@ -390,4 +390,8 @@ const newComments = [
 |关注全栈部落官方公众号，每晚十点接收系列原创技术推送|
 |:---------:|
 |![](http://orhm8wuhd.bkt.clouddn.com/quanzhanbuluo.png)|
+
+
+
+
 
