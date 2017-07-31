@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Key Detection</title>
+  <!-- <script type="text/javascript" src="http://www.cornify.com/js/cornify.js"></script> -->
+</head>
+
+<body>
+  <script>
+    const candidateCode = [];
+    const secretCode = 'liyuechun';
+    window.addEventListener('keyup', (e) => {
+      candidateCode.push(e.key);
+      // candidateCode.splice(-secretCode.length - 1, candidateCode.length - secretCode.length);
+      candidateCode.splice(0,candidateCode.length - secretCode.length);
+      console.log(candidateCode);
+      if (candidateCode.join('').includes(secretCode)) {
+        alert('liyuechun');
+      }
+    });
+  </script>
+</body>
+
+</html>
