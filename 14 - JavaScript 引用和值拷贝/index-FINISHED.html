@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>JS Reference VS Copy</title>
+</head>
+
+<body>
+
+  <script>
+    /*
+        基本数据类型:
+        1.String
+        2.Number
+        3.Boolean
+        4.Null
+        5.Undefined
+    */
+    let age = 100;
+    let age2 = age;
+    console.log(age, age2);
+    age = 200;
+    console.log(age, age2);
+
+    let name = 'liyuechun';
+    let name2 = name;
+    console.log(name, name2);
+    name = 'liyc';
+    console.log(name, name2);
+
+    /*
+      引用
+      1.Object
+      2.Function
+      3.Array
+      4.Set
+      5.Map
+    */
+    const players = ['Wes', 'Sarah', 'Ryan', 'Poppy'];
+
+    // 引用拷贝
+    const team = players;
+
+    console.log(`players: ${players}`, `team:${team}`);
+
+    // 我们做如下操作：
+    team[3] = 'Lux';
+
+    console.log(`players: ${players}`, `team:${team}`);
+
+    const team2 = players.slice();
+
+    console.log(`players: ${players}`, `team:${team}`, `team2:${team2}`);
+
+
+    /*
+    深拷贝：
+    */
+    // 创建新数组并且将原来的数组拼接到新数组中
+    const team3 = [].concat(players);
+
+    // ES6 Spread语法
+    const team4 = [...players];
+    team4[3] = 'heeee hawww';
+    console.log(`team4:${team4}`);
+
+    const team5 = Array.from(players);
+    console.log(`team5:${team5}`);
+
+
+    //创建object对象
+    const person = {
+      name: '黎跃春',
+      age: 29
+    };
+
+    // 浅拷贝
+    console.log(`person:${person}`);
+    const captain = person;
+    captain.number = 99;
+    console.log(`person:${person}`);
+    console.log(`captain:${captain}`);
+
+    // 深拷贝
+    const cap2 = Object.assign({}, person, {
+      number: 99,
+      age: 12
+    });
+    console.log(`cap2:${cap2}`);
+
+    // 对象的嵌套
+    const liyc = {
+      name: '黎跃春',
+      age: 100,
+      social: {
+        sina: '黎跃春-追时间的人',
+        facebook: '黎跃春'
+      }
+    };
+
+
+    console.log(`liyc:${liyc}`);
+
+    const dev = Object.assign({}, liyc);
+    console.log(`dev:${dev}`);
+
+    const dev2 = JSON.stringify(liyc);
+    console.log(`dev2:${dev2}`);
+
+    const dev3 = JSON.parse(JSON.stringify(liyc));
+    console.log(`dev3:${dev3}`);
+
+
+  </script>
+
+</body>
+
+</html>
