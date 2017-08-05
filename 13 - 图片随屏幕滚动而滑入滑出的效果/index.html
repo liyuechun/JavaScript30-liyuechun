@@ -29,7 +29,7 @@
       libero ipsum delectus quidem dolor at nulla, adipisci veniam in reiciendis aut asperiores omnis blanditiis quod quas
       laborum nam! Fuga ad tempora in aspernatur pariatur fugit quibusdam dolores sunt esse magni, ut, dignissimos.</p>
 
-    <!-- <img src="http://unsplash.it/400/400" class="align-left slide-in"> -->
+    <img src="http://unsplash.it/400/400" class="align-left slide-in">
 
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates, deserunt facilis et iste corrupti omnis tenetur
       est. Iste ut est dicta dolor itaque adipisci, dolorum minima, veritatis earum provident error molestias. Ratione magni
@@ -65,14 +65,15 @@
 
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio maiores adipisci quibusdam repudiandae dolor vero
       placeat esse sit! Quibusdam saepe aperiam explicabo placeat optio, consequuntur nihil voluptatibus expedita quia vero
-      perferendis, deserunt et incidunt eveniet <img src="http://unsplash.it/200/200" class="align-right slide-in"> temporibus
-      doloremque possimus facilis. Possimus labore, officia dolore! Eaque ratione saepe, alias harum laboriosam deserunt
+      perferendis, deserunt et incidunt eveniet  temporibus doloremque possimus facilis. Possimus labore, officia dolore! Eaque ratione saepe, alias harum laboriosam deserunt
       laudantium blanditiis eum explicabo placeat reiciendis labore iste sint. Consectetur expedita dignissimos, non quos
       distinctio, eos rerum facilis eligendi. Asperiores laudantium, rerum ratione consequatur, culpa consectetur possimus
       atque ab tempore illum non dolor nesciunt. Neque, rerum. A vel non incidunt, quod doloremque dignissimos necessitatibus
       aliquid laboriosam architecto at cupiditate commodi expedita in, quae blanditiis. Deserunt labore sequi, repellat laboriosam
       est, doloremque culpa reiciendis tempore excepturi. Enim nostrum fugit itaque vel corporis ullam sed tenetur ipsa qui
       rem quam error sint, libero. Laboriosam rem, ratione. Autem blanditiis</p>
+
+      <!-- <img src="http://unsplash.it/200/200" class="align-right slide-in"> -->
 
 
     <p>laborum neque repudiandae quam, cumque, voluptate veritatis itaque, placeat veniam ad nisi. Expedita, laborum reprehenderit
@@ -136,7 +137,7 @@
   </div>
 
   <script>
-    
+
     const sliderImages = document.querySelectorAll('.slide-in');
 
     function checkSlide(e) {
@@ -216,25 +217,25 @@
 
     .align-right {
       float: right;
-      margin-left: 20px; 
+      margin-left: 20px;
     }
 
     .slide-in {
-       /* opacity: 0;  */
-       transition: all .5s; 
+       /*opacity: 0;*/
+       transition: all .5s;
     }
 
     .align-left.slide-in {
-        transform: translateX(-30%) scale(0.95);  
+        transform: translateX(-30%) scale(0.95);
     }
 
     .align-right.slide-in {
-        transform: translateX(30%) scale(0.95);  
+        transform: translateX(30%) scale(0.95);
     }
 
     .slide-in.active {
-       /* opacity: 1;  */
-       transform: translateX(0%) scale(1); 
+       opacity: 1;
+       transform: translateX(0%) scale(1);
     }
   </style>
 

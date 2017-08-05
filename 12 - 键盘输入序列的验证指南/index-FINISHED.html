@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Key Detection</title>
+  <script type="text/javascript" src="http://www.cornify.com/js/cornify.js"></script>
+</head>
+
+<body>
+
+  <div style="font-size:20px;color:green">请输入:liyc</div>
+
+  <div style="font-size:40px;color:red" class="input_word_pre"></div>
+  <div style="font-size:40px;color:blue" class="input_word_af"></div>
+  <script>
+    const pressed = [];
+    const secretCode = 'liyc';
+    const input_word_pre = document.querySelector('.input_word_pre');
+    const input_word_af = document.querySelector('.input_word_af');
+
+    window.addEventListener('keyup', (e) => {
+      const regex = new RegExp('[A-z]', 'gi');
+      if (e.key.length === 1 && e.key.match(regex)) {
+        pressed.push(e.key);
+        input_word_pre.innerText = pressed.join('');
+        pressed.splice(0, pressed.length - secretCode.length);
+        input_word_af.innerText = pressed.join('');
+        if (pressed.join('').includes(secretCode)) {
+          console.log('DING DING!');
+          cornify_add();
+          // alert(secretCode);
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>
