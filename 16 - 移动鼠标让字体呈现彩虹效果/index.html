@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Mouse Shadow</title>
+</head>
+
+<body>
+
+  <div class="hero">
+    <h1 contenteditable>🔥liyc1215</h1>
+  </div>
+
+  <style>
+    html {
+      color: black;
+      font-family: sans-serif;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: orange;
+    }
+
+    h1 {
+      text-shadow: 10px 10px 0 rgba(0, 0, 0, 1);
+      font-size: 100px;
+    }
+  </style>
+
+  <script>
+    const hero = document.querySelector('.hero');
+    const text = hero.querySelector('h1');
+    const walk = 40; // 鼠标左右移动共移动的距离
+
+    function draw(e) {
+      const {
+        offsetWidth: width,
+        offsetHeight: height
+      } = hero;
+      let {
+        offsetX: x,
+        offsetY: y
+      } = e;
+
+      // 使鼠标移动到中间元素上，x、y的值连续变化
+      if (e.target !== this) {
+        // if(e.target == text){
+        x = x + e.target.offsetLeft;
+        y = y + e.target.offsetTop;
+      }
+      // const xaisx = (x/width*walk)-(walk/2);
+      // const yaisx = (y/height*walk)-(walk/2);
+      const xaisx = Math.floor((x / width * walk) - (walk / 2));
+      const yaisx = Math.floor((y / height * walk) - (walk / 2));
+      text.style.textShadow =
+        `
+      ${xaisx}px ${yaisx * -1}px 2px rgba(0,255,0,0.7),
+      ${xaisx * -1}px ${yaisx}px 2px rgba(255,0,0,0.7),
+      ${yaisx}px ${xaisx * -1}px 2px rgba(188,188,188,0.7),
+      ${yaisx * -1}px ${xaisx}px 2px rgba(0,0,255,0.7)      
+      `; // 多写几个就有了霓虹灯的效果
+    }
+    hero.addEventListener('mousemove', draw);
+  </script>
+</body>
+
+</html>
