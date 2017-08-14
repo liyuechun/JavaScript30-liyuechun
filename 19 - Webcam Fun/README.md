@@ -1,24 +1,79 @@
-> 在Github上看到了[wesbos](https://twitter.com/wesbos)的一个Javascript30天挑战的[repo](https://github.com/wesbos/JavaScript30)，旨在使用纯Js来进行练习，不允许使用任何其他的库和框架，该挑战共30天，我会在这里记录下自己练习的过程和遇到的问题。
+# Day19 - 摄像、拍照，滤镜中文指南
 
-## Day19 - Webcam Fun
-
-第十九天的练习是使用浏览器的摄像头，实时记录影像，并输出到canvas中，并用canvas对图像进行滤镜的处理。
-[线上例子](http://htmlpreview.github.io/?https://github.com/winar-jin/JavaScript30-Challenge/blob/master/19%20-%20Webcam%20Fun/index.html)。
-> 当你看浏览器查看这个在线例子的时候，你会发现并不能看到页面上出现你的视频画面，打开console面板，你会发现如下提示：
+> 本文出自：[春哥个人博客：http://www.liyuechun.org](http://liyuechun.org)
+> 作者：©[黎跃春-追时间的人](http://weibo.com/mobiledevelopment)
+> 简介：[JavaScript30](https://javascript30.com) 是 [Wes Bos](https://github.com/wesbos) 推出的一个 30 天挑战。项目免费提供了 30 个视频教程、30 个挑战的起始文档和 30 个挑战解决方案源代码。目的是帮助人们用纯 JavaScript 来写东西，不借助框架和库，也不使用编译器和引用。现在你看到的是这系列指南的第 19 篇。完整中文版指南及视频教程在 [从零到壹全栈部落](http://kongyixueyuan.com/course/4188)。
 
 
+## 效果图
+
+![](http://om1c35wrq.bkt.clouddn.com/day19.gif)
+![](http://om1c35wrq.bkt.clouddn.com/day19-red%E6%95%88%E6%9E%9C%E5%9B%BE.png)
+
+JS30天第19天挑战的是如何调用摄像头录像、播放，如何捕捉视频将其绘制`canvas`，还有拍照，以及滤镜的制作。
+
+
+## 运行项目
+
+1. 通过`npm install`安装依赖包
+2. 通过`npm start`启动服务器
+3. 浏览器直接访问`http://localhost:3000`
+
+```js
+liyuechun:19 - Webcam Fun yuechunli$ pwd
+/Users/liyuechun/Documents/js30/JavaScript30-liyuechun/19 - Webcam Fun
+liyuechun:19 - Webcam Fun yuechunli$ ls
+README.md		package-lock.json	scripts.js
+index.html		package.json		style.css
+liyuechun:19 - Webcam Fun yuechunli$ npm install
+
+> fsevents@1.1.2 install /Users/liyuechun/Documents/js30/JavaScript30-liyuechun/19 - Webcam Fun/node_modules/fsevents
+> node install
+
+[fsevents] Success: "/Users/liyuechun/Documents/js30/JavaScript30-liyuechun/19 - Webcam Fun/node_modules/fsevents/lib/binding/Release/node-v57-darwin-x64/fse.node" already installed
+Pass --update-binary to reinstall or --build-from-source to recompile
+npm WARN gum@1.0.0 No repository field.
+
+added 411 packages in 5.921s
+liyuechun:19 - Webcam Fun yuechunli$ npm start
+
+> gum@1.0.0 start /Users/liyuechun/Documents/js30/JavaScript30-liyuechun/19 - Webcam Fun
+> browser-sync start --server --files '*.css, *.html, *.js'
+
+[Browsersync] Access URLs:
+ --------------------------------------
+       Local: http://localhost:3000
+    External: http://192.168.1.116:3000
+ --------------------------------------
+          UI: http://localhost:3001
+ UI External: http://192.168.1.116:3001
+ --------------------------------------
+[Browsersync] Serving files from: ./
+[Browsersync] Watching files...
 ```
-getUserMedia() no longer works on insecure origins. To use this feature, you should consider switching your application to a secure origin, such as HTTPS. See https://goo.gl/rStTGz for more details.
-```
-意思就是只有在安全的连接模式下，才可以使用getUserMedia()的api获取到摄像头的视频信息，那么什么是安全连接呢，主要有HTTPS，localhost，wss,file,chrome-extension等。
-更多有关安全连接的信息，请查阅[参考文档](https://www.chromium.org/Home/chromium-security/prefer-secure-origins-for-powerful-new-features).
-
-对于我们的这份例子，我们通过搭建本地localhost服务器，达到安全连接的方式比较方便，因此我们首先收件本地服务器，打开我们项目中的`package.json`文件，会发现里面包含了唯一一个依赖`browser-sync`，可以创建一个本地的localhost服务器，并实时的检测页面文件的变化。（关于browser-sync，更多的可以查阅[参考文档](https://browsersync.io/docs)）,使用`npm install`安装browser-sync依赖，安装成功后运行`npm start`即可运行本地localhost服务器，并实时的检测文件的变化，实时刷新。
 
 ## 主要思路
+
 * 获取到浏览器的摄像头的影像
 * 将影像的记录导出到canvas中
 * 通过获取canvas中的图片信息，对图片添加滤镜
+
+
+## Browsersync
+
+#### 项目结构
+
+![](http://om1c35wrq.bkt.clouddn.com/Snip20170809_21.png)
+
+#### 了解Browsersync
+
+省时的浏览器同步测试工具,Browsersync能让浏览器实时、快速响应您的文件更改（html、js、css、sass、less等）并自动刷新页面。更重要的是`Browsersync可以同时在PC、平板、手机`等设备下进项调试。您可以想象一下：“假设您的桌子上有pc、ipad、iphone、android等设备，同时打开了您需要调试的页面，当您使用browsersync后，您的任何一次代码保存，以上的设备都会同时显示您的改动”。无论您是前端还是后端工程师，使用它将提高您30%的工作效率。
+
+![](http://om1c35wrq.bkt.clouddn.com/sync-demo.gif)
+
+有了它，您不用在多个浏览器、多个设备间来回切换，频繁的刷新页面。更神奇的是您在一个浏览器中滚动页面、点击等行为也会同步到其他浏览器和设备中，这一切还可以通过可视化界面来控制。
+
+![](http://om1c35wrq.bkt.clouddn.com/scroll-demo.gif)
 
 ## 获取影像
 
@@ -35,12 +90,13 @@ function getVideo(){
         });
 }
 ```
-* `navigator.mediaDevices.getUserMedia()`方法提示用户允许使用视频或者音频设备，如果用户点击允许，则返回一个Promise对象，MediaStream对象作为此Promise对象的Resolved［成功］状态的回调函数参数；但如果用户点击拒绝或者媒体可以用的时候，同样返回一个Promise对象，且PermissionDeniedError或者NotFoundError作为此Promise的Rejected［失败］状态的回调函数参数。但是，用户也可以直接取消选择，不同意也不拒绝，所以返回的Promise对象可能既不会触发resolve 也不会触发 reject。参数为一个对象，包含要请求的视频和音频情况，布尔类型，请求权限的话为true，vice via。
-更详细的内容还请进一步查阅[参考文档](https://developer.mozilla.org/zh-CN/docs/Web/API/MediaDevices/getUserMedia)。
 
-* `URL.createObjectURL()`方法是为了创建一个 DOMString 包含一个表示参数中给定的对象的URL。这个 URL 的生命周期和创建它的窗口中的 document 绑定。这个新的URL 对象表示着指定的 File 对象或者 Blob 对象。
-（DOMString 是一个UTF-16字符串。由于JavaScript已经使用了这样的字符串，所以DOMString直接映射到一个String。）
-更详细的内容请进一步查看[参考文档](https://developer.mozilla.org/zh-CN/docs/Web/API/URL/createObjectURL)。
+- [MediaDevices.getUserMedia()](https://developer.mozilla.org/zh-CN/docs/Web/API/MediaDevices/getUserMedia)
+> `MediaDevices.getUserMedia()`方法提示用户允许使用一个视频和/或一个音频输入设备，例如相机或屏幕共享和/或麦克风。如果用户给予许可，就返回一个`Promise`对象，`MediaStream`对象作为此`Promise`对象的`Resolved`［成功］状态的回调函数参数，相应的，如果用户拒绝了许可，或者没有媒体可用的情况下，`PermissionDeniedError`或者`NotFoundError`作为此`Promise`的`Rejected`［失败］状态的回调函数参数。注意，由于用户不会被要求必须作出允许或者拒绝的选择，所以返回的`Promise`对象可能既不会触发`resolve`也不会触发`reject`。
+
+
+- [URL.createObjectURL()](https://developer.mozilla.org/zh-CN/docs/Web/API/URL/createObjectURL)。
+> `URL.createObjectURL()` 静态方法会创建一个`DOMString`，其中包含一个表示参数中给出的对象的`URL`。这个`URL` 的生命周期和创建它的窗口中的`document` 绑定。这个新的`URL`对象表示指定的`File` 对象或`Blob` 对象。
 
 ## canvas绘图
 ```javascript
@@ -68,10 +124,17 @@ function printToCanvas(){
     },16);
 }
 ```
-* `ctx.drawImage()`更够将当前的视频流（video）中的一帧画在canvas中。
-* `ctx.getImageData()`返回一个ImageData对象，用来描述canvas区域隐含的像素数据，这个区域通过矩形表示，起始点为(sx, sy)、宽为sw、高为sh。[参考文档](https://developer.mozilla.org/zh-CN/docs/Web/API/CanvasRenderingContext2D/getImageData)
-* `ctx.putImageData()`:该方法是 Canvas 2D API 将数据从已有的 ImageData 对象绘制到位图的方法。 如果提供了脏矩形，只能绘制矩形的像素。 [参考文档](https://developer.mozilla.org/zh-CN/docs/Web/API/CanvasRenderingContext2D/putImageData)
-* imagedata中有大量的数据，其中分别代表了图片的颜色信息，分别为red，green，blue，alpha的值，因此我们可以同添加自定义滤镜，通过改变颜色的rgba的值，控制页面的效果。
+* `ctx.drawImage()`
+>它能够将当前的视频流（video）中的一帧画在canvas中。
+
+- [getImageData()](https://developer.mozilla.org/zh-CN/docs/Web/API/CanvasRenderingContext2D/getImageData)
+> `ctx.getImageData()`返回一个ImageData对象，用来描述canvas区域隐含的像素数据，这个区域通过矩形表示，起始点为(sx, sy)、宽为sw、高为sh。
+
+- [putImageData()](https://developer.mozilla.org/zh-CN/docs/Web/API/CanvasRenderingContext2D/putImageData)
+> `ctx.putImageData()`:该方法是 Canvas 2D API 将数据从已有的 ImageData 对象绘制到位图的方法。 如果提供了脏矩形，只能绘制矩形的像素。
+
+- imagedata信息
+> imagedata中有大量的数据，其中分别代表了图片的颜色信息，分别为red，green，blue，alpha的值，因此我们可以同添加自定义滤镜，通过改变颜色的rgba的值，控制页面的效果。
 
 ## 摄像记录导出到canvas中
 
@@ -91,9 +154,9 @@ function takePhoto(){
     strip.insertBefore(link,strip.firstChild);
 }
 ```
-* 在没次点击照相的时候，都要求播一遍音效，并且为了模拟现实情况，我们在用户点击时，设置当前的播放时间为0，再播放音效。
-* `canvas.toDataURL('image/jpeg');`方法返回一个包含图片展示的 data URI 。可以使用 type 参数其类型，默认为 PNG 格式。图片的分辨率为96dpi。 [参考文档](https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLCanvasElement/toDataURL)
-* 接下来新建一个a元素，设置其href的值为data。在插入在文档中。实现截图成功的效果。
+- 在没次点击照相的时候，都要求播一遍音效，并且为了模拟现实情况，我们在用户点击时，设置当前的播放时间为0，再播放音效。
+- [canvas.toDataURL('image/jpeg');](https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLCanvasElement/toDataURL)方法返回一个包含图片展示的 data URI 。可以使用 type 参数其类型，默认为 PNG 格式。图片的分辨率为96dpi。 
+- 接下来新建一个a元素，设置其href的值为data。在插入在文档中。实现截图成功的效果。
 
 ## 自定义滤镜
 
@@ -119,7 +182,7 @@ function rgbsplit(imagedata){
 }
 
 // 绿屏（部分消失）
-function greenScreen(pixels) {
+function greenScreen(imagedata) {
   const levels = {};
 
   document.querySelectorAll('.rgb input').forEach((input) => {
@@ -127,10 +190,10 @@ function greenScreen(pixels) {
   });
 
   for (i = 0; i < pixels.data.length; i = i + 4) {
-    red = pixels.data[i + 0];
-    green = pixels.data[i + 1];
-    blue = pixels.data[i + 2];
-    alpha = pixels.data[i + 3];
+    red = imagedata.data[i + 0];
+    green = imagedata.data[i + 1];
+    blue = imagedata.data[i + 2];
+    alpha = imagedata.data[i + 3];
 
     if (red >= levels.rmin
       && green >= levels.gmin
@@ -139,17 +202,22 @@ function greenScreen(pixels) {
       && green <= levels.gmax
       && blue <= levels.bmax) {
       // take it out!
-      pixels.data[i + 3] = 0;
+      imagedata.data[i + 3] = 0;
     }
   }
 
-  return pixels;
+  return imagedata;
 }
 ```
-这部分主要定义了三个滤镜，由于我们通过`ctx.getImageData`可以获取到页面颜色的rgba的值，，因此我们添加滤镜的原理也是这样，通过循环改变一张图片中的所有rgba的值。就不在具体的聊各个滤镜是怎么实现的了。
+这部分主要定义了三个滤镜，由于我们通过`ctx.getImageData`可以获取到页面颜色的rgba的值，因此我们添加滤镜的原理也是这样，通过循环改变一张图片中的所有rgba的值即可。
 
-## tips
-* `debugger`在源程序中添加debugger，可以使程序在运行时，在此处停止，进入调试模式。
 
-OK，这样就可以啦！😀
+## 源码下载
+
+[Github Source Code](https://github.com/liyuechun/JavaScript30-liyuechun)
+
+|全栈部落|区块链部落|
+|:---------:|:------:|
+|![](http://orhm8wuhd.bkt.clouddn.com/quanzhanbuluo100.jpeg)|![](http://orhm8wuhd.bkt.clouddn.com/qukuailian100.jpg)|
+
 
