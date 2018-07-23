@@ -89,12 +89,12 @@
 
 **涉及到的特性：**
 
-- `transform-oragin`
+- `transform-origin`
 
-调整指针的初始位置以及旋转的轴点:[transform-oragin](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin)
+调整指针的初始位置以及旋转的轴点:[transform-origin](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin)
     
 ```css
-transform-oragin: 100%; //初始化使三个指针全部指向12时
+transform-origin: 100%; //初始化使三个指针全部指向12时
 ```
 
 - `transform: rotate()`
